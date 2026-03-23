@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About|North Collective Studio</title>
+    <style>
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            font-family: "Courier New", Courier, monospace;
+            animation: fadeInPage 0.8s ease-out;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        
+        .header-container {
+            width: 100%;
+            height: 80px; 
+            background: url('img/topgradient.png') repeat-x;
+            background-size: contain;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+        }
+
+        .brand-zone {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding-left: 10px;
+        }
+
+        .brand-zone img {
+            height: 90%; 
+            display: block;
+        }
+
+        .nav-zone {
+            display: flex;
+            height: 100%;
+            padding-right: 20px; 
+        }
+
+        .nav-button {
+            display: block;
+            height: 100%;
+            position: relative;
+            width: 110px; 
+        }
+
+        .nav-button img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: block;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .nav-link { cursor: pointer; }
+        .nav-link img.static { opacity: 1; z-index: 2; }
+        .nav-link img.active { opacity: 0; z-index: 1; }
+        .nav-link:hover img.static { opacity: 0; }
+        .nav-link:hover img.active { opacity: 1; }
+
+        .nav-static { cursor: default; }
+        .nav-static img { opacity: 1; z-index: 2; }
+
+        
+        .about-section {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            flex: 1; 
+        }
+
+        .about-title {
+            font-size: 32px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+
+        .about-text {
+            font-size: 18px;
+            color: #efefef;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 50px;
+            border-top: 1px solid #222;
+            padding-top: 30px;
+        }
+
+        .info-item h4 {
+            color: #666;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-item p {
+            font-size: 16px;
+        }
+
+        
+        footer {
+            padding: 40px 20px;
+            border-top: 1px solid #111;
+            text-align: center;
+            background-color: #000;
+        }
+
+        .copyright {
+            font-size: 10px;
+            color: #444;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        
+        @media (max-width: 768px) {
+            .header-container { height: 60px; }
+            .nav-button { width: 85px; }
+            .nav-zone { padding-right: 10px; }
+
+            .about-title { font-size: 24px; margin-bottom: 25px; }
+            .about-text { font-size: 16px; }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-container">
+        <div class="brand-zone">
+            <a href="index.html" style="height: 100%; display: block;">
+                <img src="img/logo.png" alt="Логотип НКС">
+            </a>
+        </div>
+
+        <nav class="nav-zone">
+            <a href="index.html" class="nav-button nav-link">
+                <img src="img/home_button.png" alt="Главная страница" class="static">
+                <img src="img/home_buttonACT.png" alt="Главная страница(наводка хых)" class="active">
+            </a>
+            
+            <div class="nav-button nav-static">
+                <img src="img/about_buttonACT.png" alt="О нас" class="static">
+            </div>
+        </nav>
+    </header>
+
+    <main class="about-section">
+        <h1 class="about-title">[ ИНФОРМАЦИЯ ]</h1>
+        
+        <p class="about-text">
+            Приветствую всех! С вами творческая команда НКС, а точнее её руководитель — Матвей Новак. Сегодня я хочу подробнее рассказать о видео и форматах, над которыми мы работаем, о нашем сообществе, а также напомнить о добровольном активе в ТГК и других медиапроектах.  
+        </p>
+
+        <p class="about-text">
+            Наши основные направления включают в себя художественную фотографию, профессиональный дубляж, написание музыки и производство независимых веб-сериалов.
+        </p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <h4>Руководитель</h4>
+                <p>Матвей Новак</p>
+            </div>
+            <div class="info-item">
+                <h4>Основано</h4>
+                <p>2023</p>
+            </div>
+            <div class="info-item">
+                <h4>Контент</h4>
+                <p>Фотографии / Дубляж / Веб-сериалы / Игровые проекты</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p class="copyright">© 2026 NORTH COLLECTIVE STUDIO. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>

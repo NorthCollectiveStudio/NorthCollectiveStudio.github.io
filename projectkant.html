@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПРОЕКТ "КАНТ"|North Collective Studio</title>
+    <style>
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            font-family: "Courier New", Courier, monospace;
+            animation: fadeInPage 1.2s ease-in-out;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        
+        .header-container {
+            width: 100%;
+            height: 80px; 
+            background: url('img/topgradient.png') repeat-x;
+            background-size: contain;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+        }
+
+        .brand-zone {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding-left: 10px;
+        }
+
+        .brand-zone img {
+            height: 90%; 
+            display: block;
+        }
+
+        
+        .nav-zone {
+            display: flex;
+            height: 100%;
+            padding-right: 40px;
+        }
+
+        .nav-button {
+            display: block;
+            height: 100%;
+            position: relative;
+            width: 110px;
+            cursor: pointer;
+        }
+
+        .nav-button img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: block;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .nav-button img.static { opacity: 1; z-index: 2; }
+        .nav-button img.active { opacity: 0; z-index: 1; }
+
+        .nav-button:hover img.static { opacity: 0; }
+        .nav-button:hover img.active { opacity: 1; }
+
+        
+        .project-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        .project-image-side {
+            flex: 1;
+            position: relative;
+        }
+
+        .project-image-side img {
+            width: 100%;
+            border: 1px solid #333;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.05));
+        }
+
+        .project-info-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 28px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 15px;
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        
+        .links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .external-link {
+            display: inline-block;
+            padding: 12px 20px;
+            border: 1px solid #444;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+            transition: all 0.3s;
+            text-align: center;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .external-link:hover {
+            background: #fff;
+            color: #000;
+            transform: translateX(10px);
+        }
+
+        
+        @media (max-width: 850px) {
+            .project-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .external-link:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-container">
+        <div class="brand-zone">
+            <a href="index.html"><img src="img/logo.png" alt="Логотип НКС"></a>
+        </div>
+
+        <nav class="nav-zone">
+            <a href="index.html" class="nav-button">
+                <img src="img/home_button.png" alt="Главная страница" class="static">
+                <img src="img/home_buttonACT.png" alt="Главная страница(наводка хых)" class="active">
+            </a>
+            
+            <a href="about.html" class="nav-button">
+                <img src="img/about_button.png" alt="О нас" class="static">
+                <img src="img/about_buttonACT.png" alt="О нас(наводка хых)" class="active">
+            </a>
+        </nav>
+    </header>
+
+    <main class="project-container">
+        <section class="project-image-side">
+            <img src="projects/projectkant/mainscreen.png" alt="Картинка проекта">
+        </section>
+
+        <section class="project-info-side">
+            <h1 class="project-title">ПРОЕКТ "КАНТ"</h1>
+            <p class="project-description">
+            Проект "Кант" - Постмодерн веб-сериал, который является каталогом различных историй, 
+            происходящих в Западной Сибири на протяжении 1990х до настоящего времени. 
+            По факту является каталогом различных историй, большинство из которых основано на реальных историях (Убийство мэра Нефтеюганска, дело готов-каннибалов (убийство Киры Будучьян), 
+            Гульчехра Бобокулова, истории связанные с F57 и т.д). Однако все эти истории тонкой нитью соединены и связанны с некой сектой шаманой, которые хотят воскресить древнего бога нижнего мира.
+            </p>
+
+            <div class="links-grid">
+                <a href="https://www.youtube.com/playlist?list=PLciReJoefNTTD0HZyGGC7GxZTYCDBN59b" target="_blank" class="external-link">Смотреть на YouTube</a>
+                <a href="https://t.me/NORTHCOLLECTIVECH" target="_blank" class="external-link">Телеграм канал</a>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
