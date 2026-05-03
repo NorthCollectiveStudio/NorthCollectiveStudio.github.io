@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAFF | North Collective Studio</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            font-family: "Courier New", Courier, monospace;
+            animation: fadeInPage 1.2s ease-in-out;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .header-container {
+            width: 100%;
+            height: 80px; 
+            background: url('img/topgradient.png') repeat-x;
+            background-size: contain;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+        }
+
+        .brand-zone {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding-left: 10px;
+        }
+
+        .brand-zone img {
+            height: 90%; 
+            display: block;
+        }
+
+        .nav-zone {
+            display: flex;
+            height: 100%;
+            padding-right: 40px;
+        }
+
+        .nav-button {
+            display: block;
+            height: 100%;
+            position: relative;
+            width: 110px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .nav-button img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: block;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .nav-button img.static { opacity: 1; z-index: 2; }
+        .nav-button img.active { opacity: 0; z-index: 1; }
+
+        .nav-button:hover img.static { opacity: 0; }
+        .nav-button:hover img.active { opacity: 1; }
+
+        .staff-header {
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+
+        .staff-header h1 {
+            font-size: 32px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #222;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .staff-container {
+            max-width: 1000px;
+            margin: 0 auto 100px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .staff-card {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid #222;
+            padding: 20px;
+            transition: transform 0.3s, border-color 0.3s;
+            cursor: pointer;
+            user-select: none; /* Чтобы текст не выделялся при кликах */
+        }
+
+        .staff-card:hover {
+            transform: translateX(10px);
+            border-color: #444;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .staff-photo {
+            width: 150px;
+            height: 150px;
+            flex-shrink: 0;
+            border: 1px solid #333;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .staff-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.5);
+            transition: filter 0.3s;
+        }
+
+        .staff-card:hover .staff-photo img {
+            filter: grayscale(0);
+        }
+
+        .staff-info {
+            flex: 1;
+            pointer-events: none;
+        }
+
+        .staff-name {
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .staff-role {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .staff-desc {
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .staff-year {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #555;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .staff-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .staff-card:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Звуковой эффект -->
+    <audio id="click-sound" src="sound/kick.mp3" preload="auto"></audio>
+
+    <header class="header-container">
+        <div class="brand-zone">
+            <a href="index.html"><img src="img/logo.png" alt="Логотип НКС"></a>
+        </div>
+
+        <nav class="nav-zone">
+            <a href="index.html" class="nav-button">
+                <img src="img/home_button.png" alt="Главная" class="static">
+                <img src="img/home_buttonACT.png" alt="Главная Актив" class="active">
+            </a>
+            <a href="about.html" class="nav-button">
+                <img src="img/about_button.png" alt="О нас" class="static">
+                <img src="img/about_buttonACT.png" alt="О нас Актив" class="active">
+            </a>
+            <div class="nav-button">
+                <img src="img/staff_buttonACT.png" alt="Персонал">
+            </div>
+        </nav>
+    </header>
+
+    <div class="staff-header">
+        <h1>Команда НКС</h1>
+    </div>
+
+    <main class="staff-container">
+
+        <!-- Матвей Новак -->
+        <div class="staff-card" onclick="playEffect(this, 'img/staff/NOVAK.png', 'img/staff/NOVAK_ALT.png')">
+            <div class="staff-photo"><img src="img/staff/NOVAK.png" alt="Матвей Новак"></div>
+            <div class="staff-info">
+                <h2 class="staff-name">Матвей Новак (NVK404)</h2>
+                <p class="staff-role">Основатель и глава студии</p>
+                <p class="staff-desc">Курирует всю творческую деятельность: от производства до публикации.</p>
+                <span class="staff-year">Глава</span>
+            </div>
+        </div>
+
+        <!-- Данил -->
+        <div class="staff-card" onclick="playEffect(this, 'img/staff/Daniel.png', 'img/staff/Daniel_ALT.png')">
+            <div class="staff-photo"><img src="img/staff/Daniel.png" alt="Данил"></div>
+            <div class="staff-info">
+                <h2 class="staff-name">Данил (dixa_sosiska)</h2>
+                <p class="staff-role">Соруководитель, креативный директор «Больших проектов»</p>
+                <p class="staff-desc">Актер озвучивания, гитарист, сценарист и фотограф.</p>
+                <span class="staff-year">Участник с 2025 года</span>
+            </div>
+        </div>
+
+        <!-- Татьяна Коттовна -->
+        <div class="staff-card" onclick="playEffect(this, 'img/staff/Kotta.png', 'img/staff/Kotta_ALT.png')">
+            <div class="staff-photo"><img src="img/staff/Kotta.png" alt="Татьяна Коттовна"></div>
+            <div class="staff-info">
+                <h2 class="staff-name">Татьяна Коттовна (xibiria)</h2>
+                <p class="staff-role">Соруководитель, автор каверов</p>
+                <p class="staff-desc">Гитаристка и актриса озвучивания.</p>
+                <span class="staff-year">Участник с 2024 года</span>
+            </div>
+        </div>
+
+        <!-- ТимурG -->
+        <div class="staff-card" onclick="playEffect(this, 'img/staff/RosemaryDUDE.png', 'img/staff/RosemaryDUDE_ALT.png')">
+            <div class="staff-photo"><img src="img/staff/RosemaryDUDE.png" alt="ТимурG"></div>
+            <div class="staff-info">
+                <h2 class="staff-name">ТимурG (RosemaryDude)</h2>
+                <p class="staff-role">Главный техспециалист и программист</p>
+                <p class="staff-desc">Совладелец сайта и Discord-сервера, руководитель разработки игры «The Rosemary Field».</p>
+                <span class="staff-year">Участник с 2025 года</span>
+            </div>
+        </div>
+
+        <!-- Диана ИНСОМНИYA -->
+        <div class="staff-card" onclick="playEffect(this, 'img/staff/INSOMNIYA.png', 'img/staff/INSOMNIYA_ALT.png')">
+            <div class="staff-photo"><img src="img/staff/INSOMNIYA.png" alt="Диана"></div>
+            <div class="staff-info">
+                <h2 class="staff-name">Диана ИНСОМНИYA</h2>
+                <p class="staff-role">Главный художник студии</p>
+                <p class="staff-desc">Совладелец Minecraft-сервера НКС.</p>
+                <span class="staff-year">Участник с 2026 года</span>
+            </div>
+        </div>
+
+        <!-- Андрей Sammakko -->
+        <div class="staff-card" onclick="playEffect(this, 'img/staff/Endryu.png', 'img/staff/Endryu_ALT.png')">
+            <div class="staff-photo"><img src="img/staff/Endryu.png" alt="Андрей"></div>
+            <div class="staff-info">
+                <h2 class="staff-name">Андрей Sammakko</h2>
+                <p class="staff-role">Дизайнер, фотограф, художник</p>
+                <p class="staff-desc">Актер озвучивания.</p>
+                <span class="staff-year">Участник с 2024 года</span>
+            </div>
+        </div>
+
+        <!-- Кирилл Кепка-Кепкович -->
+        <div class="staff-card" onclick="playEffect(this, 'img/staff/Kirill.png', 'img/staff/Kirill_ALT.png')">
+            <div class="staff-photo"><img src="img/staff/Kirill.png" alt="Кирилл"></div>
+            <div class="staff-info">
+                <h2 class="staff-name">Кирилл Кепка-Кепкович</h2>
+                <p class="staff-role">Модератор сообщества</p>
+                <p class="staff-desc">Помощник программиста.</p>
+                <span class="staff-year">Участник с 2024 года</span>
+            </div>
+        </div>
+
+        <!-- The_Neptoon -->
+        <div class="staff-card" onclick="playEffect(this, 'img/staff/NeptoonYA.png', 'img/staff/NeptoonYA_ALT.png')">
+            <div class="staff-photo"><img src="img/staff/NeptoonYA.png" alt="The_Neptoon"></div>
+            <div class="staff-info">
+                <h2 class="staff-name">The_Neptoon(ya)</h2>
+                <p class="staff-role">Ветеран сообщества</p>
+                <p class="staff-desc">Советник по связям с аудиторией.</p>
+                <span class="staff-year">Участник с 2023 года</span>
+            </div>
+        </div>
+
+        <!-- Telamonovna -->
+        <div class="staff-card" onclick="playEffect(this, 'img/staff/Renya.png', 'img/staff/Renya_ALT.png')">
+            <div class="staff-photo"><img src="img/staff/Renya.png" alt="Telamonovna"></div>
+            <div class="staff-info">
+                <h2 class="staff-name">Telamonovna</h2>
+                <p class="staff-role">Переводчик, актриса озвучивания</p>
+                <p class="staff-desc">Ранее была владельцем первого партнерского проекта студии.</p>
+                <span class="staff-year">Участник с 2025 года</span>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function playEffect(card, originalSrc, altSrc) {
+            const img = card.querySelector('.staff-photo img');
+            const sound = document.getElementById('click-sound');
+
+
+            if (sound) {
+                sound.currentTime = 0;
+                sound.play().catch(e => console.log("Нужен первый клик по странице для активации звука"));
+            }
+
+
+            img.src = altSrc;
+
+
+            setTimeout(() => {
+                img.src = originalSrc;
+            }, 250);
+        }
+    </script>
+
+</body>
+</html>
