@@ -5,15 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>North Collective Studio</title>
     <style>
-        
         * { 
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
         }
         
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0813;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #ff5e62, #ff9966);
+            border-radius: 4px;
+        }
+
         body {
-            background-color: #000;
+            background: radial-gradient(circle at 50% 30%, #1a0f26 0%, #07050f 70%, #000000 100%);
+            background-attachment: fixed;
             color: #fff;
             overflow-x: hidden;
             font-family: "Courier New", Courier, monospace;     
@@ -28,7 +40,7 @@
             to { opacity: 1; }
         }
 
-        
+
         .header-container {
             width: 100%;
             height: 80px; 
@@ -51,6 +63,7 @@
         .brand-zone img {
             height: 90%; 
             display: block;
+            filter: drop-shadow(0 0 8px rgba(255, 153, 102, 0.3));
         }
 
         .nav-zone {
@@ -64,6 +77,11 @@
             height: 100%;
             position: relative;
             width: 110px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
         }
 
         .nav-button img {
@@ -85,20 +103,33 @@
         .nav-static { cursor: default; }
         .nav-static img { opacity: 1; z-index: 2; }
 
-        
+
         .hero-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 50px 20px;
+            padding: 60px 20px;
+            position: relative; 
+            max-width: 1200px; 
+            margin: 0 auto;
+            width: 100%;
         }
 
         .main-statue {
             width: 300px;
             max-width: 80%;
             margin-bottom: 25px;
-            filter: drop-shadow(0 0 15px rgba(255,255,255,0.05));
+            filter: drop-shadow(0 0 25px rgba(255, 94, 98, 0.35));
+            animation: floatMain 4s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes floatMain {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
         }
 
         .hero-title {
@@ -106,16 +137,114 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             margin-bottom: 15px;
+            background: linear-gradient(45deg, #ff9966, #ff5e62);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-subtitle {
             font-size: 14px;
-            color: #aaa;
+            color: #bfaecf;
             max-width: 600px;
             line-height: 1.6;
+            position: relative;
+            z-index: 2;
         }
 
-        
+
+        .hero-mascot {
+            position: absolute;
+            height: auto;
+            z-index: 1;
+            filter: drop-shadow(0 0 10px rgba(255, 94, 98, 0.2));
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        .hero-mascot:hover {
+            transform: scale(1.15) rotate(3deg) !important; 
+            z-index: 3;
+        }
+
+
+        @keyframes mascotFadeInUp1 {
+            0% { opacity: 0; transform: translateY(40px) rotate(-10deg); }
+            100% { opacity: 1; transform: translateY(0px) rotate(-4deg); }
+        }
+        @keyframes mascotFadeInUp2 {
+            0% { opacity: 0; transform: translateY(40px) rotate(10deg); }
+            100% { opacity: 1; transform: translateY(0px) rotate(4deg); }
+        }
+        @keyframes mascotFadeInUp3 {
+            0% { opacity: 0; transform: translateX(-40px) translateY(20px) rotate(-5deg); }
+            100% { opacity: 1; transform: translateX(0px) translateY(0px) rotate(0deg); }
+        }
+        @keyframes mascotFadeInUp4 {
+            0% { opacity: 0; transform: translateX(40px) translateY(20px) rotate(5deg); }
+            100% { opacity: 1; transform: translateX(0px) translateY(0px) rotate(0deg); }
+        }
+
+
+        @keyframes floatMascot1 {
+            0%, 100% { transform: translateY(0px) rotate(-4deg); }
+            50% { transform: translateY(-12px) rotate(0deg); }
+        }
+        @keyframes floatMascot2 {
+            0%, 100% { transform: translateY(0px) rotate(4deg); }
+            50% { transform: translateY(-10px) rotate(0deg); }
+        }
+        @keyframes floatMascot3 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
+        }
+        @keyframes floatMascot4 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-9px) rotate(-3deg); }
+        }
+
+
+        .mascot-insom {
+            width: 100px;
+            top: 20px;
+            left: 15%;
+            animation: mascotFadeInUp1 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards, 
+                       floatMascot1 3.8s ease-in-out infinite 1.5s;
+        }
+
+
+        .mascot-tanya {
+            width: 110px;
+            top: 15px;
+            right: 15%;
+            animation: mascotFadeInUp2 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards, 
+                       floatMascot2 4.2s ease-in-out infinite 1.7s;
+        }
+
+
+        .mascot-cat {
+            width: 120px;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 4%;
+            animation: mascotFadeInUp3 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.7s forwards, 
+                       floatMascot3 4.0s ease-in-out infinite 1.9s;
+        }
+
+
+        .mascot-rosem {
+            width: 125px;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 4%;
+            animation: mascotFadeInUp4 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.9s forwards, 
+                       floatMascot4 4.5s ease-in-out infinite 2.1s;
+        }
+
+
         .main-grid {
             display: flex;
             justify-content: center;
@@ -140,7 +269,7 @@
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(255, 94, 98, 0.15) 100%);
             pointer-events: none;
             transition: opacity 0.3s;
         }
@@ -154,19 +283,19 @@
 
         .external-card:hover {
             transform: translateY(-8px);
-            border-color: #444;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            border-color: rgba(255, 153, 102, 0.4);
+            box-shadow: 0 10px 25px rgba(255, 94, 98, 0.2);
         }
 
         .external-card:hover img {
             transform: scale(1.05); 
-            filter: brightness(1.1);
+            filter: brightness(1.1) saturate(1.1);
         }
 
-        
+
         footer {
             padding: 40px 20px;
-            border-top: 1px solid #222;
+            border-top: 1px solid rgba(255, 94, 98, 0.15);
             text-align: center;
             background-color: #000;
         }
@@ -188,16 +317,25 @@
         }
 
         .social-link:hover {
-            color: #aaa;
+            color: #ff9966;
+            text-shadow: 0 0 10px rgba(255, 153, 102, 0.4);
         }
 
         .copyright {
             font-size: 10px;
-            color: #555;
+            color: #635673;
             letter-spacing: 1px;
         }
 
-        
+
+        @media (max-width: 1024px) {
+
+            .mascot-insom { left: 8%; }
+            .mascot-tanya { right: 8%; }
+            .mascot-cat { left: 2%; width: 90px; }
+            .mascot-rosem { right: 2%; width: 95px; }
+        }
+
         @media (max-width: 768px) {
             .header-container { height: 60px; }
             .nav-button { width: 80px; }
@@ -205,6 +343,25 @@
             .hero-title { font-size: 18px; letter-spacing: 2px; }
             .hero-subtitle { font-size: 12px; }
             .main-statue { width: 200px; }
+
+
+            .hero-mascot {
+                position: relative;
+                display: inline-block;
+                width: 70px !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                transform: none !important;
+                margin: 10px 15px;
+                opacity: 1;
+                animation: floatMascot3 4s ease-in-out infinite !important;
+            }
+            
+            .hero-section {
+                padding: 40px 10px;
+            }
 
             .external-card img {
                 width: 100%; 
@@ -242,11 +399,17 @@
     </header>
 
     <section class="hero-section">
+        <img src="img/INSOM.png" alt="Mascot INSOM" class="hero-mascot mascot-insom">
+        <img src="img/tanyaandguitar.png" alt="Mascot Tanya" class="hero-mascot mascot-tanya">
+        
+        <img src="img/whatthefuckareyoudoinghererdudecat.png" alt="Mascot Cat" class="hero-mascot mascot-cat">
+        <img src="img/rosemandrenya.png" alt="Mascot Rosem" class="hero-mascot mascot-rosem">
+
         <img src="img/logo big.jpg" alt="Statue" class="main-statue">
         
         <h1 class="hero-title">Welcome to [North Collective Studio]</h1>
         <p class="hero-subtitle">
-            Фотографии, эдиты, дубляж, музыка, веб сериалы и много другого стаффа!
+            Летний сезон открыт! Фотографии, эдиты, дубляж, музыка, веб сериалы и много другого горячего стаффа!
         </p>
     </section>
 
@@ -257,10 +420,10 @@
         <a href="rosemfield.html" target="_self" class="external-card">
             <img src="projects/rf/logomain.png" alt="Карточка Проекта 2">
         </a>
-        <a href="mikpr.html" target="_self " class="external-card">
+        <a href="mikpr.html" target="_self" class="external-card">
             <img src="projects/MalProjec/logomain.png" alt="Карточка Проекта 3">
         </a>
-        <a href="comingsoon.html" target="_self " class="external-card">
+        <a href="comingsoon.html" target="_self" class="external-card">
             <img src="img/comingsoon.png" alt="Карточка Проекта 4">
         </a>
     </main>
@@ -273,7 +436,7 @@
             <a href="https://discord.gg/PkZDTJNb5T" class="social-link">Discord</a>
             <a href="https://rosemguy.github.io/" class="social-link">Made By RosemaryDude</a>
         </div>
-        <p class="copyright">© 2026 NORTH COLLECTIVE STUDIO. ALL RIGHTS RESERVED.</p>
+        <p class="copyright">© 2026 NORTH COLLECTIVE STUDIO. SUMMER UPDATE. ALL RIGHTS RESERVED.</p>
     </footer>
 
 </body>
