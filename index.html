@@ -8,11 +8,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
-
-    <link rel="icon" type="image/png" sizes="512x1512" href="favicon/android-chrome-512x512.png">
-
     <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
-
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <style>
@@ -22,7 +18,6 @@
             box-sizing: border-box; 
         }
         
-
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -50,7 +45,6 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
 
         .header-container {
             width: 100%;
@@ -114,7 +108,6 @@
         .nav-static { cursor: default; }
         .nav-static img { opacity: 1; z-index: 2; }
 
-
         .hero-section {
             display: flex;
             flex-direction: column;
@@ -165,7 +158,6 @@
             z-index: 2;
         }
 
-
         .hero-mascot {
             position: absolute;
             height: auto;
@@ -180,7 +172,6 @@
             transform: scale(1.15) rotate(3deg) !important; 
             z-index: 3;
         }
-
 
         @keyframes mascotFadeInUp1 {
             0% { opacity: 0; transform: translateY(40px) rotate(-10deg); }
@@ -199,7 +190,6 @@
             100% { opacity: 1; transform: translateX(0px) translateY(0px) rotate(0deg); }
         }
 
-
         @keyframes floatMascot1 {
             0%, 100% { transform: translateY(0px) rotate(-4deg); }
             50% { transform: translateY(-12px) rotate(0deg); }
@@ -217,7 +207,6 @@
             50% { transform: translateY(-9px) rotate(-3deg); }
         }
 
-
         .mascot-insom {
             width: 100px;
             top: 20px;
@@ -226,7 +215,6 @@
                        floatMascot1 3.8s ease-in-out infinite 1.5s;
         }
 
-
         .mascot-tanya {
             width: 110px;
             top: 15px;
@@ -234,7 +222,6 @@
             animation: mascotFadeInUp2 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards, 
                        floatMascot2 4.2s ease-in-out infinite 1.7s;
         }
-
 
         .mascot-cat {
             width: 120px;
@@ -245,7 +232,6 @@
                        floatMascot3 4.0s ease-in-out infinite 1.9s;
         }
 
-
         .mascot-rosem {
             width: 125px;
             top: 50%;
@@ -254,7 +240,6 @@
             animation: mascotFadeInUp4 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.9s forwards, 
                        floatMascot4 4.5s ease-in-out infinite 2.1s;
         }
-
 
         .main-grid {
             display: flex;
@@ -303,7 +288,6 @@
             filter: brightness(1.1) saturate(1.1);
         }
 
-
         footer {
             padding: 40px 20px;
             border-top: 1px solid rgba(255, 94, 98, 0.15);
@@ -338,36 +322,54 @@
             letter-spacing: 1px;
         }
 
-
         @media (max-width: 1024px) {
-
             .mascot-insom { left: 8%; }
             .mascot-tanya { right: 8%; }
             .mascot-cat { left: 2%; width: 90px; }
             .mascot-rosem { right: 2%; width: 95px; }
         }
 
+        /* --- ОБНОВЛЕННЫЙ МОБИЛЬНЫЙ МЕДИА-ЗАПРОС --- */
         @media (max-width: 768px) {
             .header-container { height: 60px; }
             .nav-button { width: 80px; }
             
             .hero-title { font-size: 18px; letter-spacing: 2px; }
             .hero-subtitle { font-size: 12px; }
-            .main-statue { width: 200px; }
+            .main-statue { width: 190px; }
 
-
+            /* Возвращаем абсолютное позиционирование и левитацию на смартфонах */
             .hero-mascot {
-                position: relative;
-                display: inline-block;
-                width: 70px !important;
-                top: auto !important;
-                left: auto !important;
-                right: auto !important;
-                bottom: auto !important;
-                transform: none !important;
-                margin: 10px 15px;
-                opacity: 1;
-                animation: floatMascot3 4s ease-in-out infinite !important;
+                position: absolute;
+                display: block;
+                opacity: 0; /* Оставляем анимацию плавного появления */
+            }
+
+            /* Компактно ужимаем координаты вокруг уменьшенной статуи */
+            .mascot-insom {
+                width: 65px !important;
+                top: 10px !important;
+                left: 5% !important;
+            }
+
+            .mascot-tanya {
+                width: 75px !important;
+                top: 5px !important;
+                right: 5% !important;
+            }
+
+            .mascot-cat {
+                width: 75px !important;
+                top: 42% !important;
+                left: 2% !important;
+                transform: translateY(-50%) !important;
+            }
+
+            .mascot-rosem {
+                width: 80px !important;
+                top: 42% !important;
+                right: 2% !important;
+                transform: translateY(-50%) !important;
             }
             
             .hero-section {
