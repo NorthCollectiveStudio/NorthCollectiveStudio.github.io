@@ -308,22 +308,32 @@
     </main>
 
     <script>
+
+        let isPlaying = false;
+
         function playEffect(card, originalSrc, altSrc) {
+                if (isPlaying) return; 
+                isPlaying = true;
+
             const img = card.querySelector('.staff-photo img');
             const sound = document.getElementById('click-sound');
+
+            
             if (img) {
                 img.src = altSrc;
             }
+
             if (sound) {
                 sound.currentTime = 0;
-                sound.play().catch(e => {
-                    console.log("Интеракция: звук заблокирован политикой браузера до первого клика.");
+            sound.play().catch(err => {
+                console.log("Звук заблокирован системой: нужно сначала кликнуть по экрану.");
                 });
             }
             setTimeout(() => {
                 if (img) {
                     img.src = originalSrc;
                 }
+                isPlaying = false; 
             }, 250);
         }
     </script>
