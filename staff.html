@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x1512" href="favicon/android-chrome-512x512.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link class="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <style>
         * { 
@@ -119,7 +119,8 @@
             padding: 20px;
             transition: transform 0.3s, border-color 0.3s;
             cursor: pointer;
-            user-select: none; /* Чтобы текст не выделялся при кликах */
+            user-select: none;
+            pointer-events: auto; /* Гарантирует, что карточка ловит клики */
         }
 
         .staff-card:hover {
@@ -134,7 +135,7 @@
             flex-shrink: 0;
             border: 1px solid #333;
             overflow: hidden;
-            pointer-events: none;
+            pointer-events: none; /* Клик проходит сквозь во внешнюю карточку */
         }
 
         .staff-photo img {
@@ -151,7 +152,7 @@
 
         .staff-info {
             flex: 1;
-            pointer-events: none;
+            pointer-events: none; /* Клик проходит сквозь во внешнюю карточку */
         }
 
         .staff-name {
@@ -196,7 +197,6 @@
 </head>
 <body>
 
-    <!-- Звуковой эффект -->
     <audio id="click-sound" src="sound/kick.mp3" preload="auto"></audio>
 
     <header class="header-container">
@@ -225,9 +225,8 @@
 
     <main class="staff-container">
 
-        <!-- Матвей Новак -->
-        <div class="staff-card" onclick="playEffect(this, './img/NOVAK.png', './img/NOVAK_ALT.png')">
-            <div class="staff-photo"><img src="./img/NOVAK.png" alt="Матвей Новак"></div>
+        <div class="staff-card" onclick="playEffect(this, 'img/NOVAK.png', 'img/NOVAK_ALT.png')">
+            <div class="staff-photo"><img src="img/NOVAK.png" alt="Матвей Новак"></div>
             <div class="staff-info">
                 <h2 class="staff-name">Матвей Новак (NVK404)</h2>
                 <p class="staff-role">Основатель и глава студии</p>
@@ -236,9 +235,8 @@
             </div>
         </div>
 
-        <!-- Данил -->
-        <div class="staff-card" onclick="playEffect(this, './img/Daniel.png', './img/Daniel_ALT.png')">
-            <div class="staff-photo"><img src="./img/Daniel.png" alt="Данил"></div>
+        <div class="staff-card" onclick="playEffect(this, 'img/Daniel.png', 'img/Daniel_ALT.png')">
+            <div class="staff-photo"><img src="img/Daniel.png" alt="Данил"></div>
             <div class="staff-info">
                 <h2 class="staff-name">Данил (dixa_sosiska)</h2>
                 <p class="staff-role">Соруководитель, креативный директор «Больших проектов»</p>
@@ -247,9 +245,8 @@
             </div>
         </div>
 
-        <!-- Татьяна Коттовна -->
-        <div class="staff-card" onclick="playEffect(this, './img/Kotta.png', './img/Kotta_ALT.png')">
-            <div class="staff-photo"><img src="./img/Kotta.png" alt="Татьяна Коттовна"></div>
+        <div class="staff-card" onclick="playEffect(this, 'img/Kotta.png', 'img/Kotta_ALT.png')">
+            <div class="staff-photo"><img src="img/Kotta.png" alt="Татьяна Коттовна"></div>
             <div class="staff-info">
                 <h2 class="staff-name">Татьяна Коттовна (xibiria)</h2>
                 <p class="staff-role">Соруководитель, автор каверов</p>
@@ -258,9 +255,8 @@
             </div>
         </div>
 
-        <!-- ТимурG -->
-        <div class="staff-card" onclick="playEffect(this, './img/RosemaryDUDE.png', './img/RosemaryDUDE_ALT.png')">
-            <div class="staff-photo"><img src="./img/RosemaryDUDE.png" alt="ТимурG"></div>
+        <div class="staff-card" onclick="playEffect(this, 'img/RosemaryDUDE.png', 'img/RosemaryDUDE_ALT.png')">
+            <div class="staff-photo"><img src="img/RosemaryDUDE.png" alt="ТимурG"></div>
             <div class="staff-info">
                 <h2 class="staff-name">ТимурG (RosemaryDude)</h2>
                 <p class="staff-role">Главный техспециалист и программист</p>
@@ -269,9 +265,8 @@
             </div>
         </div>
 
-        <!-- Диана ИНСОМНИYA -->
-        <div class="staff-card" onclick="playEffect(this, './img/INSOMNIYA.png', './img/INSOMNIYA_ALT.png')">
-            <div class="staff-photo"><img src="./img/INSOMNIYA.png" alt="Диана"></div>
+        <div class="staff-card" onclick="playEffect(this, 'img/INSOMNIYA.png', 'img/INSOMNIYA_ALT.png')">
+            <div class="staff-photo"><img src="img/INSOMNIYA.png" alt="Диана"></div>
             <div class="staff-info">
                 <h2 class="staff-name">Диана ИНСОМНИYA</h2>
                 <p class="staff-role">Главный художник студии</p>
@@ -280,9 +275,8 @@
             </div>
         </div>
 
-        <!-- Андрей Sammakko -->
-        <div class="staff-card" onclick="playEffect(this, './img/Endryu.png', './img/Endryu_ALT.png')">
-            <div class="staff-photo"><img src="./img/Endryu.png" alt="Андрей"></div>
+        <div class="staff-card" onclick="playEffect(this, 'img/Endryu.png', 'img/Endryu_ALT.png')">
+            <div class="staff-photo"><img src="img/Endryu.png" alt="Андрей"></div>
             <div class="staff-info">
                 <h2 class="staff-name">Андрей Sammakko</h2>
                 <p class="staff-role">Дизайнер, фотограф, художник</p>
@@ -291,9 +285,8 @@
             </div>
         </div>
 
-        <!-- Кирилл Кепка-Кепкович -->
-        <div class="staff-card" onclick="playEffect(this, './img/Kirill.png', './img/Kirill_ALT.png')">
-            <div class="staff-photo"><img src="./img/Kirill.png" alt="Кирилл"></div>
+        <div class="staff-card" onclick="playEffect(this, 'img/Kirill.png', 'img/Kirill_ALT.png')">
+            <div class="staff-photo"><img src="img/Kirill.png" alt="Кирилл"></div>
             <div class="staff-info">
                 <h2 class="staff-name">Кирилл Кепка-Кепкович</h2>
                 <p class="staff-role">Модератор сообщества</p>
@@ -302,9 +295,8 @@
             </div>
         </div>
 
-        <!-- Telamonovna -->
-        <div class="staff-card" onclick="playEffect(this, './img/Renya.png', './img/Renya_ALT.png')">
-            <div class="staff-photo"><img src="./img/Renya.png" alt="Telamonovna"></div>
+        <div class="staff-card" onclick="playEffect(this, 'img/Renya.png', 'img/Renya_ALT.png')">
+            <div class="staff-photo"><img src="img/Renya.png" alt="Telamonovna"></div>
             <div class="staff-info">
                 <h2 class="staff-name">Telamonovna</h2>
                 <p class="staff-role">Переводчик, актриса озвучивания</p>
@@ -319,22 +311,21 @@
         function playEffect(card, originalSrc, altSrc) {
             const img = card.querySelector('.staff-photo img');
             const sound = document.getElementById('click-sound');
-
-
+            if (img) {
+                img.src = altSrc;
+            }
             if (sound) {
                 sound.currentTime = 0;
-                sound.play().catch(e => console.log("Нужен первый клик по странице для активации звука"));
+                sound.play().catch(e => {
+                    console.log("Интеракция: звук заблокирован политикой браузера до первого клика.");
+                });
             }
-
-
-            img.src = altSrc;
-
-
             setTimeout(() => {
-                img.src = originalSrc;
+                if (img) {
+                    img.src = originalSrc;
+                }
             }, 250);
         }
     </script>
-
 </body>
 </html>
