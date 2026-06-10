@@ -19,11 +19,15 @@
             user-select: none;
         }
 
-
+        /* === АДАПТИВНЫЙ КОРПУС ТЕЛЕВИЗОРА === */
         .tv-frame {
             position: relative;
-            width: 750px;
-            height: 750px;
+            /* Используем vmin, чтобы телик подстраивался под размер экрана телефона */
+            width: 95vmin; 
+            height: 95vmin;
+            /* Не даем ему раздуться больше оригинальных 750px на мониторах */
+            max-width: 750px;
+            max-height: 750px;
             background: url('img/rosask/tv.png') no-repeat center center;
             background-size: contain;
             display: flex;
@@ -31,7 +35,7 @@
             align-items: center;
         }
 
-
+        /* Область виртуального кинескопа (пропорции сохраняются идеально) */
         .crt-screen {
             position: absolute;
             top: 11%;
@@ -40,14 +44,14 @@
             height: 61%;
             background: url('img/rosask/back.png') no-repeat center bottom;
             background-size: cover;
-            border-radius: 18px;
+            border-radius: 12px; /* Чуть уменьшили скругление для мобилок */
             overflow: hidden;
             cursor: pointer;
             box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9);
             animation: crt-flicker 0.15s infinite;
         }
 
-
+        /* CRT эффект: сканирующие линии сверху */
         .crt-screen::after {
             content: " ";
             display: block;
@@ -75,13 +79,15 @@
         .start-prompt {
             font-family: 'Courier New', Courier, monospace;
             color: #33ff33; 
-            font-size: 15px;
+            font-size: 14px;
             letter-spacing: 2px;
             text-shadow: 0 0 8px rgba(51, 255, 51, 0.8);
             animation: pulse 1s infinite alternate;
+            text-align: center;
+            padding: 10px;
         }
 
-
+        /* === СЦЕНА С ПЕРСОНАЖЕМ === */
         .stage {
             position: absolute;
             top: 0;
@@ -101,12 +107,12 @@
             transition: transform 0.1s ease-in-out;
         }
 
-
+        /* === ИНТЕРФЕЙС ДИАЛОГА === */
         .vn-ui-container {
             position: absolute;
-            bottom: 90px;
-            left: 25px;
-            right: 25px;
+            bottom: 18%; /* Использование процентов вместо px, чтобы на телефонах окно не улетало вверх */
+            left: 6%;
+            right: 6%;
             z-index: 3;
         }
 
@@ -116,42 +122,50 @@
             color: #ffffff;
             border: 2px solid #3a3a3a;
             border-bottom: none;
-            padding: 4px 14px;
-            font-size: 13px;
+            padding: 3px 10px;
+            font-size: 11px;
             font-weight: bold;
             letter-spacing: 1px;
             border-radius: 4px 4px 0 0;
             box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
         }
 
-
         .textbox {
-            background: rgba(13, 13, 13, 0.88);
+            background: rgba(13, 13, 13, 0.92); /* Сделали чуть темнее для лучшей читаемости на мелких экранах */
             border: 2px solid #3a3a3a;
             border-radius: 0 5px 5px 5px;
-            padding: 15px;
-            min-height: 95px;
+            padding: 10px 12px;
+            min-height: 75px; /* Уменьшили минимальную высоту для экранов мобильных */
             box-sizing: border-box;
             box-shadow: 0 4px 10px rgba(0,0,0,0.7);
             position: relative;
         }
 
-
         .text-content {
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 12px; /* Чуть уменьшили базовый шрифт для микро-дисплеев */
+            line-height: 1.4;
             color: #e5e5e5;
-            padding-right: 15px;
+            padding-right: 10px;
+            word-wrap: break-word;
         }
-
 
         .next-arrow {
             position: absolute;
-            bottom: 8px;
-            right: 12px;
-            font-size: 10px;
+            bottom: 6px;
+            right: 10px;
+            font-size: 9px;
             color: #888;
             animation: arrow-blink 0.6s infinite alternate;
+        }
+
+        /* === ОПТИМИЗАЦИЯ ДЛЯ БОЛЬШИХ МОНИТОРОВ === */
+        @media (min-width: 768px) {
+            .crt-screen { border-radius: 18px; }
+            .vn-ui-container { bottom: 90px; left: 25px; right: 25px; }
+            .name-box { font-size: 13px; padding: 4px 14px; }
+            .textbox { padding: 15px; min-height: 95px; }
+            .text-content { font-size: 14px; }
+            .start-prompt { font-size: 15px; }
         }
 
         /* Анимации */
@@ -310,21 +324,16 @@
             nameTag.textContent = fact.name || "???";
         }
 
-
         gameBox.addEventListener('click', () => {
             if (!isStarted) {
-                
                 isStarted = true;
                 startScreen.style.display = 'none'; 
-                
                 
                 bgm.play().catch(error => {
                     console.log("Автовоспроизведение музыки заблокировано браузером. Потребуется еще клик.", error);
                 });
-// Показываем первую реплику Розема
                 nextFact(); 
             } else {
-
                 nextFact();
             }
         });
