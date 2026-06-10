@@ -3,294 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCS TV MANAGER</title>
-    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x1512" href="favicon/android-chrome-512x512.png">
-    <link class="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
+    <title>RosemFlowers-Status:WATCH</title>
     <style>
-
         body {
             margin: 0;
             padding: 0;
-            background-color: #000000;
+            background: #0a0a0a;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             overflow: hidden;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-
-        .tv-container {
-            position: relative;
-            width: 550px;
-            height: 550px;
-            cursor: pointer;
             user-select: none;
         }
 
 
-        .tv-hardware {
+        .tv-frame {
+            position: relative;
+            width: 750px;
+            height: 750px;
+            background: url('img/rosask/tv.png') no-repeat center center;
+            background-size: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .crt-screen {
+            position: absolute;
+            top: 11%;
+            left: 11%;
+            width: 78%;
+            height: 61%;
+            background: url('img/rosask/back.png') no-repeat center bottom;
+            background-size: cover;
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9);
+            animation: crt-flicker 0.15s infinite;
+        }
+
+
+        .crt-screen::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+            z-index: 5;
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+
+        .start-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('img/tv.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+            background: #050505;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .start-prompt {
+            font-family: 'Courier New', Courier, monospace;
+            color: #33ff33; 
+            font-size: 15px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(51, 255, 51, 0.8);
+            animation: pulse 1s infinite alternate;
+        }
+
+
+        .stage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
             z-index: 1;
         }
 
+        .sprite {
+            height: 85%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7));
+            transition: transform 0.1s ease-in-out;
+        }
 
-        .tv-screen-area {
+
+        .vn-ui-container {
             position: absolute;
-            top: 17.5%;     
-            left: 15.6%;    
-            width: 68.6%;   
-            height: 51.0%;  
-            background-color: #050505; 
-            overflow: hidden;
-            z-index: 5;
-            border-radius: 35px / 18px;
-            clip-path: inset(0% 0% 0% 0% round 35px / 18px); 
+            bottom: 90px;
+            left: 25px;
+            right: 25px;
+            z-index: 3;
         }
 
-
-        .screen-content {
-            width: 100%;
-            height: 100%;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-color: #ffffff; 
-            opacity: 0;
-            filter: brightness(0.85) contrast(1.15); 
-            transition: opacity 0.3s ease-in-out;
-            position: relative;
-            z-index: 6;
-        }
-
-
-        .active .screen-content.show-pic {
-            opacity: 1;
-        }
-
-
-
-
-        .tv-noise {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-
-            background-image: repeating-radial-gradient(rgba(0,0,0,0.8) 0px, rgba(200,200,200,0.2) 1px, rgba(0,0,0,0.7) 2px);
-            background-size: 150px 150px;
-            opacity: 0; 
-            z-index: 7;
-            pointer-events: none;
-        }
-
-
-        .active .tv-noise {
-            opacity: 0.18; 
-            animation: noise-move 0.1s infinite;
-        }
-
-
-        .active.no-picture .tv-noise {
-            opacity: 0.75;
-            animation: noise-move 0.05s infinite;
-            background-color: #111;
-        }
-
-
-        @keyframes noise-move {
-            0% { background-position: 0px 0px; }
-            20% { background-position: 50px 20px; }
-            40% { background-position: -30px 40px; }
-            60% { background-position: 10px -80px; }
-            80% { background-position: -40px -10px; }
-            100% { background-position: 30px 30px; }
-        }
-
-
-        .tv-screen-area::after {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.45) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.05));
-            background-size: 100% 4px, 6px 100%;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-
-        .crt-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(0,0,0,0) 45%, rgba(0,0,0,0.75) 100%);
-            animation: crt-flicker 0.15s infinite;
-            z-index: 11;
-            pointer-events: none;
-        }
-
-        @keyframes crt-flicker {
-            0% { opacity: 0.93; }
-            50% { opacity: 1; }
-            100% { opacity: 0.95; }
-        }
-
-
-        .prompt-text {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
+        .name-box {
+            display: inline-block;
+            background: #0c0c0c;
             color: #ffffff;
-            font-size: 16px;
-            text-align: center;
-            text-shadow: 0 0 6px #ffffff;
-            z-index: 8;
-            animation: pulse 1.5s infinite;
-            transition: opacity 0.2s ease-in-out, visibility 0.2s;
-            visibility: visible;
+            border: 2px solid #3a3a3a;
+            border-bottom: none;
+            padding: 4px 14px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-radius: 4px 4px 0 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
         }
 
-        .active .prompt-text {
-            opacity: 0;
-            visibility: hidden;
+
+        .textbox {
+            background: rgba(13, 13, 13, 0.88);
+            border: 2px solid #3a3a3a;
+            border-radius: 0 5px 5px 5px;
+            padding: 15px;
+            min-height: 95px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+            position: relative;
+        }
+
+
+        .text-content {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #e5e5e5;
+            padding-right: 15px;
+        }
+
+
+        .next-arrow {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            font-size: 10px;
+            color: #888;
+            animation: arrow-blink 0.6s infinite alternate;
+        }
+
+        /* Анимации */
+        @keyframes crt-flicker {
+            0% { opacity: 0.993; }
+            50% { opacity: 1; }
+            100% { opacity: 0.996; }
+        }
+
+        @keyframes arrow-blink {
+            0% { opacity: 0.2; transform: translateY(0); }
+            100% { opacity: 1; transform: translateY(2px); }
         }
 
         @keyframes pulse {
-            0% { opacity: 0.6; }
-            50% { opacity: 1; }
-            100% { opacity: 0.6; }
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .crt-screen:active .sprite {
+            transform: scale(0.98);
         }
     </style>
 </head>
 <body>
 
-    <audio id="tv-audio"></audio>
+    <audio id="bgm" src="sound/track2.mp3" loop></audio>
 
-    <div class="tv-container" id="tv" onclick="toggleTV()">
-        
-        <div class="tv-hardware"></div>
-        
-        <div class="tv-screen-area">
-            <div class="prompt-text">Press<br>to TV</div>
+    <div class="tv-frame">
+        <div class="crt-screen" id="game-box">
             
-            <div class="tv-noise"></div>
+            <div class="start-overlay" id="start-screen">
+                <div class="start-prompt">▶ НАЖМИ ДЛЯ ВКЛЮЧЕНИЯ</div>
+            </div>
             
-            <div class="crt-overlay"></div>
-            
-            <div class="screen-content" id="screen-img"></div>
+            <div class="stage">
+                <img id="character" class="sprite" src="img/rosask/normal.png" alt="Персонаж">
+            </div>
+
+            <div class="vn-ui-container">
+                <div class="name-box" id="char-name">???</div>
+                <div class="textbox">
+                    <div class="text-content">
+                        <div id="dialogue">Загрузка...</div>
+                    </div>
+                    <div class="next-arrow">▼</div>
+                </div>
+            </div>
+
         </div>
-
     </div>
 
     <script>
-        const tv = document.getElementById('tv');
-        const audio = document.getElementById('tv-audio');
-        const screenImg = document.getElementById('screen-img');
-
-
-        let isFirstTime = true;
-
-
-        const randomPlaylist = [
-            { file: 'sound/track2.mp3', chance: 0.90, img: 'img/error_ntsc.png', showImg: true }, 
-            { file: 'sound/track3.mp3', chance: 0.10, img: '', showImg: false } // Без картинки
+        const facts = [
+            {
+                name: "Rosem",
+                text: "Где я нахуй",
+                sprite: "img/rosask/o_o.png"
+            },
+            {
+                name: "Rosem",
+                text: "Ладно раз уж я в своей комнате похуй",
+                sprite: "img/rosask/normal.png"
+            },
+            {
+                name: "Rosem",
+                text: "Ого, я думаю что кто то сидит и смотрит на меня",
+                sprite: "img/rosask/nevermind.png"
+            },
+            {
+                name: "Rosem",
+                text: "Так и есть бляя",
+                sprite: "img/rosask/fuck.png"
+            },
+            {
+                name: "Rosem",
+                text: "Хочется как то вернуть старые временна",
+                sprite: "img/rosask/sad.png"
+            },
+            {
+                name: "Rosem",
+                text: "Я только щас вспомнил что через несколько минут должна эта как там Хикки прийти",
+                sprite: "img/rosask/nappy.png"
+            },
+            {
+                name: "Rosem",
+                text: "Я немного Хикки боюсь как то",
+                sprite: "img/rosask/o_o.png"
+            },
+            {
+                name: "Rosem",
+                text: "надеюсь что реня не будет спать в это время",
+                sprite: "img/rosask/o_o.png"
+            },
+            {
+                name: "Rosem",
+                text: "Бля почему мне мама не звонит почти что",
+                sprite: "img/rosask/sad.png"
+            },
+            {
+                name: "Rosem",
+                text: "дингробесе",
+                sprite: "img/rosask/normal.png"
+            },
+            {
+                name: "Rosem",
+                text: "Ну надеемся что я не усну до прихода Хикки",
+                sprite: "img/rosask/normal.png"
+            },
+            {
+                name: "Rosem",
+                text: "Что ты любишь?",
+                sprite: "img/rosask/nevermind.png"
+            },
+            {
+                name: "Rosem",
+                text: "Кстати должен скоро выйти кое что особое",
+                sprite: "img/rosask/nappy.png"
+            },
+            {
+                name: "Rosem",
+                text: "как же я боюсь взрослеть",
+                sprite: "img/rosask/sad.png"
+            },
+            {
+                name: "Rosem",
+                text: "простите простите простите простите простите простите простите простите простите простите простите простите простите",
+                sprite: "img/rosask/sad.png"
+            }
         ];
 
+        let lastIndex = -1;
+        let isStarted = false; 
 
-        function getRandomEvent() {
-            const roll = Math.random();
-            let startRange = 0;
+        const gameBox = document.getElementById('game-box');
+        const startScreen = document.getElementById('start-screen');
+        const characterImg = document.getElementById('character');
+        const dialogueText = document.getElementById('dialogue');
+        const nameTag = document.getElementById('char-name');
+        const bgm = document.getElementById('bgm');
 
-            for (let track of randomPlaylist) {
-                if (roll >= startRange && roll < startRange + track.chance) {
-                    return track;
-                }
-                startRange += track.chance;
-            }
-            return randomPlaylist[0];
+        function getRandomFact() {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * facts.length);
+            } while (randomIndex === lastIndex && facts.length > 1);
+
+            lastIndex = randomIndex;
+            return facts[randomIndex];
         }
 
-        function toggleTV() {
-
-            tv.classList.toggle('active');
-            
-
-            tv.classList.remove('no-picture');
-            screenImg.classList.remove('show-pic');
-
-            if (tv.classList.contains('active')) {
-                let currentTrack = "";
-                let currentImg = "";
-                let shouldShowImg = false;
-
-                if (isFirstTime) {
-                    // Железная логика на ПЕРВЫЙ запуск
-                    currentTrack = 'sound/track1.mp3';
-                    currentImg = 'img/r_prhwe2.png';
-                    shouldShowImg = true;
-                    isFirstTime = false; 
-                    console.log("Первый запуск! Показываем r_prhwe2.png");
-                } else {
-
-                    const rolledEvent = getRandomEvent();
-                    currentTrack = rolledEvent.file;
-                    currentImg = rolledEvent.img;
-                    shouldShowImg = rolledEvent.showImg;
-                    
-                    if (!shouldShowImg) {
-
-                        tv.classList.add('no-picture');
-                        console.log("Редкий запуск! Картинки нет, только белый шум.");
-                    } else {
-                        console.log("Обычный запуск! Показываем error_ntsc.png");
-                    }
-                }
+        function nextFact() {
+            const fact = getRandomFact();
+            dialogueText.textContent = fact.text;
+            characterImg.src = fact.sprite;
+            nameTag.textContent = fact.name || "???";
+        }
 
 
-                if (shouldShowImg) {
-                    screenImg.style.backgroundImage = `url('${currentImg}')`;
-                    screenImg.classList.add('show-pic');
-                } else {
-                    screenImg.style.backgroundImage = 'none';
-                }
-
-                audio.src = currentTrack;
-                audio.play().catch(e => console.log("Браузер заблокировал аудио"));
-
+        gameBox.addEventListener('click', () => {
+            if (!isStarted) {
+                
+                isStarted = true;
+                startScreen.style.display = 'none'; 
+                
+                
+                bgm.play().catch(error => {
+                    console.log("Автовоспроизведение музыки заблокировано браузером. Потребуется еще клик.", error);
+                });
+// Показываем первую реплику Розема
+                nextFact(); 
             } else {
 
-                turnOffTV();
+                nextFact();
             }
-        }
-
-        function turnOffTV() {
-            tv.classList.remove('active');
-            tv.classList.remove('no-picture');
-            screenImg.classList.remove('show-pic');
-            audio.pause();
-            audio.src = "";
-            screenImg.style.backgroundImage = 'none';
-            console.log("Телевизор выключен.");
-        }
-
-
-        audio.addEventListener('ended', () => {
-            console.log("Трек закончился. Автовыключение...");
-            turnOffTV();
         });
     </script>
+
 </body>
 </html>
