@@ -19,7 +19,6 @@
         }
         
         body {
-
             background: radial-gradient(circle at center, #2600ff 0%, #000000 80%);
             min-height: 100vh;
             color: #fff;
@@ -87,7 +86,6 @@
         .nav-button:hover img.static { opacity: 0; }
         .nav-button:hover img.active { opacity: 1; }
 
-
         .project-container {
             display: flex;
             max-width: 1100px; 
@@ -97,14 +95,13 @@
             align-items: center;
         }
 
-
         .project-image-side {
             width: 100%;
             max-width: 950px; 
             position: relative;
         }
 
-        .project-image-side video {
+        .project-image-side img {
             width: 100%;
             border: 1px solid #1a4d80;
             border-radius: 4px; 
@@ -165,24 +162,34 @@
 
     <main class="project-container">
         <section class="project-image-side">
-            <video id="danceVideo" controls loop autoplay playsinline>
-                <source src="media/IMG_6851.mp4" type="video/mp4">
-                Ваш браузер не поддерживает встроенные видео.
-            </video>
+            <img src="img/БУХАЕМ.png" alt="Прыгающее изображение">
+            
+            <audio id="danceAudio" loop autoplay>
+                <source src="sound/БУХАЕМ.mp3" type="audio/mpeg">
+                Ваш браузер не поддерживает встроенные аудио.
+            </audio>
         </section>
     </main>
 
     <script>
-        const video = document.getElementById('danceVideo');
-        
-
-        document.addEventListener('click', function() {
-            if (video.paused) {
-                video.play().catch(function(error) {
-                    console.log("Автоплей всё ещё заблокирован: " + error);
+        const audioTrack = document.getElementById('danceAudio');
+        const startAudio = () => {
+            if (audioTrack.paused) {
+                audioTrack.play().then(() => {
+                    removeListeners();
+                }).catch(error => {
+                    console.log("Ждем действий пользователя: ", error);
                 });
             }
-        }, { once: true });
+        };
+        const removeListeners = () => {
+            ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+                document.removeEventListener(evt, startAudio);
+            });
+        };
+        ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+            document.addEventListener(evt, startAudio);
+        });
     </script>
 
 </body>
