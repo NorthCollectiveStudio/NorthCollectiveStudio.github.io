@@ -9,7 +9,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
     <link class="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <style>
@@ -24,6 +23,33 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+        }
+
+        
+        .top-banner-link {
+            display: block;
+            width: 100%;
+            max-width: 1200px; 
+            margin: 10px auto 0 auto; 
+            padding: 0 20px; 
+            box-sizing: border-box;
+            overflow: hidden;
+            line-height: 0;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .top-banner-link:hover {
+            transform: translateY(-2px); 
+            filter: brightness(1.1); 
+        }
+
+        .top-banner-img {
+            width: 100%;
+            height: 105px; 
+            object-fit: cover; 
+            border-radius: 6px; 
+            border: 1px solid rgba(255, 94, 98, 0.3); 
+            box-shadow: 0 0 15px rgba(255, 94, 98, 0.15); 
         }
 
         footer {
@@ -55,13 +81,19 @@
             .hero-subtitle { font-size: 12px; }
             .main-statue { width: 190px; }
 
+            .top-banner-link {
+                padding: 0 10px;
+                margin-top: 10px;
+            }
+            .top-banner-img {
+                height: 45px; 
+            }
 
             .hero-mascot {
                 position: absolute;
                 display: block;
                 opacity: 0; 
             }
-
 
             .mascot-insom {
                 width: 65px !important;
@@ -107,6 +139,7 @@
 </head>
 <body>
 
+    
     <header class="header-container">
         <div class="brand-zone">
             <img src="img/logo.png" alt="Логотип НКС">
@@ -128,6 +161,12 @@
         </nav>
     </header>
 
+    
+    <a href="reimu.html" class="top-banner-link">
+        <img src="img/test.jpg" alt="Фестиваль ГРОХОД " class="top-banner-img">
+    </a>
+
+    
     <section class="hero-section">
         <img src="img/INSOM.png" alt="Mascot INSOM" class="hero-mascot mascot-insom">
         <img src="img/tanyaandguitar.png" alt="Mascot Tanya" class="hero-mascot mascot-tanya">
@@ -150,6 +189,7 @@
         </p>
     </section>
 
+    
     <main class="main-grid">
         <a href="projectkant.html" target="_self" class="external-card">
             <img src="projects/projectkant/logo.png" alt="Карточка Проекта 1">
@@ -165,6 +205,7 @@
         </a>
     </main>
 
+    
     <footer>
         <div class="footer-socials">
             <a href="https://t.me/NORTHCOLLECTIVECH" class="social-link">Telegram</a>
