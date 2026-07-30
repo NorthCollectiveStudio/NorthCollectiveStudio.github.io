@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фестиваль «ГРОХОТ» | 4-5 августа, Новосибирск</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- VHS Overlay / Scanlines -->
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
+
+    <!-- Header / VCR status -->
+    <header class="vcr-header">
+        <div class="vcr-status">
+            <span class="rec-dot"></span> <span class="blink">REC</span>
+            <span class="vcr-mode">▶ PLAY</span>
+            <span class="timecode">01:07:19</span>
+        </div>
+        <div class="vcr-date">JULY 30 2026</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-logo-container">
+            <h1 class="glitch-title" data-text="ГРОХОТ">ГРОХОТ</h1>
+            <p class="hero-subtitle">ПРАЗДНИК ЖИВОЙ, ЗЛОЙ И БЕСКОМПРОМИССНОЙ МУЗЫКИ</p>
+        </div>
+        <div class="event-badge">
+            <span class="badge-date">4–5 АВГУСТА</span>
+            <span class="badge-location">АРТ-ПРОЕКТ «ЦОКОЛЬ» • НОВОСИБИРСК</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about container">
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="terminal-title">SYS_INFO // ГРОХОТ.LOG</span>
+            </div>
+            <div class="terminal-body">
+                <p><strong>10 андеграунд-команд Новосибирска</strong> разорвут тишину 4 и 5 августа в недрах арт-проекта «Цоколь» (Вокзальная магистраль, 16).</p>
+                <p>Мерч, тусовка и первые аккорды:</p>
+                <ul>
+                    <li>📍 <strong>Локация:</strong> Арт-проект «Цоколь», Вокзальная магистраль, 16.</li>
+                    <li>🕒 <strong>18:00</strong> — Открытие дверей. Маркет мерча от групп и команды <em>Mad House Studio</em>. Николай Третьяков с командой уже готовят декор, будет красиво и стрёмно одновременно.</li>
+                    <li>🕒 <strong>19:00</strong> — Начало концерта.</li>
+                </ul>
+                <p class="highlight-text">Сделай звук погромче. Дальше — только «Грохот». 🔥</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lineup Section -->
+    <section class="lineup container">
+        <h2>ЛАЙН-АП // ЛЕНТЫ А И Б</h2>
+        <div class="lineup-grid">
+            <!-- Day 1 -->
+            <div class="day-card" data-day="4 августа">
+                <div class="day-header">
+                    <h3>4 АВГУСТА</h3>
+                    <span class="day-tag">ЖИВЫЕ / ЗЛЫЕ</span>
+                </div>
+                <ul class="band-list">
+                    <li>ЖИТЬ ДРУЖНО</li>
+                    <li>НЕ ГРОМЧЕ ЛЮБВИ!</li>
+                    <li>МОПСЫ</li>
+                    <li>ВИЛЛИ АРГЕНТУМ</li>
+                    <li>ОСКОЛКИ ВОЗДУХА</li>
+                </ul>
+            </div>
+            <!-- Day 2 -->
+            <div class="day-card" data-day="5 августа">
+                <div class="day-header">
+                    <h3>5 АВГУСТА</h3>
+                    <span class="day-tag">АНДЕГРАУНД / НОЙЗ</span>
+                </div>
+                <ul class="band-list">
+                    <li>МОРЕЛЛА</li>
+                    <li>ЛАНДШАФТ</li>
+                    <li>SYNTO</li>
+                    <li>МОРАЛЬ</li>
+                    <li>PSYCHO NULL</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media / Video Report Section -->
+    <section class="media-section container">
+        <div class="media-banner">
+            <div class="media-text-left">
+                <h3>ПОЛНЫЙ</h3>
+                <h2>ВИДЕОРЕПОРТАЖ</h2>
+            </div>
+            <div class="media-center-visual">
+                <span class="vcr-text-glitch">ГРОХОТ</span>
+            </div>
+            <div class="media-text-right">
+                <p>СМОТРИТЕ НА</p>
+                <span class="studio-name">NORTH COLLECTIVE STUDIO</span>
+            </div>
+        </div>
+        <div class="video-preview-wrapper">
+            <!-- Interactive VHS Player simulation -->
+            <div class="vhs-player" id="vhsPlayer">
+                <div class="screen-content" id="screenContent">
+                    <div class="play-prompt">▶ НАЖМИТЕ ДЛЯ ВОСПРОИЗВЕДЕНИЯ АРХИВА</div>
+                </div>
+                <div class="vhs-controls">
+                    <button class="vhs-btn" id="playBtn">PLAY</button>
+                    <button class="vhs-btn" id="rewBtn">REW</button>
+                    <button class="vhs-btn" id="glitchBtn">GLITCH</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 NORTH COLLECTIVE STUDIO / ФЕСТИВАЛЬ «ГРОХОТ»</p>
+        <p class="footer-sub">Следи за каналом: анонсы групп, знакомство с артистами и детали лайН-апа уже на подлёте.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
