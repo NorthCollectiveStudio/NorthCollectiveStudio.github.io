@@ -16,10 +16,10 @@ body {
     width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: #0a0813;
+    background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #ff5e62, #ff9966);
+    background: linear-gradient(180deg, #fdfcfc, #fefcfa);
     border-radius: 4px;
 }
 
@@ -63,7 +63,7 @@ body {
     width: 300px;
     max-width: 80%;
     margin-bottom: 25px;
-    filter: drop-shadow(0 0 25px rgba(255, 94, 98, 0.35));
+    filter: drop-shadow(0 0 25px rgba(249, 249, 249, 0.35));
     animation: floatMain 4s ease-in-out infinite;
     position: relative;
     z-index: 2;
@@ -80,7 +80,7 @@ body {
 .hero-title {
     font-size: 24px;
     margin-bottom: 15px;
-    background: linear-gradient(45deg, #ff9966, #ff5e62);
+    background: linear-gradient(45deg, #ffffff, #ffffff);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -99,7 +99,7 @@ body {
     position: absolute;
     height: auto;
     z-index: 1;
-    filter: drop-shadow(0 0 10px rgba(255, 94, 98, 0.2));
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
     will-change: transform, opacity;
@@ -166,7 +166,7 @@ body {
     content: "";
     position: absolute;
     inset: 0; 
-    background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(255, 94, 98, 0.15) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0, 0, 0, 0.15) 100%);
     pointer-events: none;
     transition: opacity 0.3s;
 }
@@ -180,8 +180,8 @@ body {
 
 .external-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(255, 153, 102, 0.4);
-    box-shadow: 0 10px 25px rgba(255, 94, 98, 0.2);
+    border-color: rgba(116, 113, 111, 0.4);
+    box-shadow: 0 10px 25px rgba(237, 235, 235, 0.2);
 }
 
 .external-card:hover img {
@@ -385,8 +385,8 @@ footer {
 }
 
 .social-link:hover {
-    color: #ff9966;
-    text-shadow: 0 0 10px rgba(255, 153, 102, 0.4);
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
 .tv-frame {
@@ -421,7 +421,7 @@ footer {
     display: block;
     position: absolute;
     inset: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+    background: linear-gradient(rgba(15, 15, 15, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
     z-index: 5;
     background-size: 100% 4px;
     pointer-events: none;
